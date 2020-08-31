@@ -18,7 +18,7 @@ import java.util.Scanner;
 @Component
 public class CreateInputMatrixFromFileBean {
 
-    // Pre:     Reference file exists (if not, NullPointerException is thrown)
+    // Pre:     Reference file exists (if not, FileNotFoundException is thrown)
     //          Reference file can be accessed (if not, SecurityException is thrown)
     //          Reference file contains a single binary two-dimensional array comprising of space separated 1s and 0s
     //              in a regular matrix fashion (if not, NumberFormatException is thrown)
