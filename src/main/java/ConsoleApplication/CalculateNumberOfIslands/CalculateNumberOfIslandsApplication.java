@@ -80,7 +80,7 @@ public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
         } catch (NullPointerException e) {
             System.err.println("NullPointerException: Input file directory \""+ inputDirectory + "\" was not found.");
         } catch (SecurityException e) {
-            System.err.println("SecurityException: File \"" + inputDirectory + "\" cannot be accessed.");
+            System.err.println("SecurityException: Input file directory \"" + inputDirectory + "\" cannot be accessed.");
         }
     }
 
