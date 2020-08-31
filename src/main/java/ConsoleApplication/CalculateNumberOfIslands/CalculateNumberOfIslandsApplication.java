@@ -90,15 +90,15 @@ public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
         if (array.length == 0) {
             String emptyArray = inputIntroMsg + "{{}}";
             System.out.println(emptyArray);
-        // If the array is not empty, a string representing each row is built and then printed
+        // If the array is not empty, a string representing each line to print is built and then printed
         } else {
             for (int i = 0; i < array.length; i++) {
                 StringBuilder row = new StringBuilder();
 
-                // First row
+                // First line
                 if (i == 0) {
                     row.append(inputIntroMsg).append("{ ");       // the first line has a description
-                // Subsequent rows
+                // Subsequent lines
                 } else {
                     // Leading space for the alignment of the array
                     // (the additional '+2' is to account for appending "{ " above)
