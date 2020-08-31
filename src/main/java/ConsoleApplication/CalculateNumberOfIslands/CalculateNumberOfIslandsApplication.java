@@ -48,8 +48,11 @@ public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
 
     @Override
     // Pre:     Reference directory/files exist and can be accessed
-    //              (if not, NullPointerException is caught and the corrupted directory/file path is reported,
-    //              or, SecurityException is caught and denial of access to the corrupted directory/file path reported)
+    //              (if the directory does not exist, NullPointerException is caught and the corrupted directory path
+    //              is reported,
+    //              if a file does not exist, FileNotFoundException is caught and the corrupted file path is reported,
+    //              if the directory/file cannot be accessed, SecurityException is caught and denial of access to the
+    //              corrupted directory/file path is reported)
     //          Reference file contains a single binary two-dimensional array comprising of space separated 1s and 0s
     //              in a regular matrix fashion
     //              (if not, NumberFormatException is caught and the corrupted file path is reported with a message
