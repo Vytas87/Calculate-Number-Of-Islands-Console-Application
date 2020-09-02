@@ -21,7 +21,9 @@ public class CreateInputMatrixFromFileBean {
     // Pre:     Reference file exists (if not, FileNotFoundException is thrown)
     //          Reference file can be accessed (if not, SecurityException is thrown)
     //          Reference file contains a single binary two-dimensional array comprising of space separated 1s and 0s
-    //              in a regular matrix fashion (if not, NumberFormatException is thrown)
+    //              in a regular matrix fashion
+    //              (if not, NumberFormatException is thrown if the parsed string is not of numeric type,
+    //              or IllegalArgumentException is thrown if the resulting integer is not 1 or 0)
     public int[][] createInputMatrix(File file) throws FileNotFoundException {
         Scanner input = new Scanner(new File(file.getAbsolutePath()));
 
@@ -40,8 +42,11 @@ public class CreateInputMatrixFromFileBean {
             String[] rowOfNumbers = input.nextLine().split(" ");
             List<Integer> rowList = new ArrayList<>();
                 for (String s : rowOfNumbers) {
-                        int element = Integer.parseInt(s);
-                        rowList.add(element); // handle element not 1 nor 0 case
+                    int element = Integer.parseInt(s);
+                    if (element != 0 && element != 1) {
+                        throw new IllegalArgumentException("For input element: " + s);
+                    }
+                    rowList.add(element);
                 }
             inputMatrixAsList.add(rowList);
         }

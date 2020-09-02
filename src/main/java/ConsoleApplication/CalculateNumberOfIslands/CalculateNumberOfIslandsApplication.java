@@ -55,8 +55,10 @@ public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
     //              corrupted directory/file path is reported)
     //          Reference file contains a single binary two-dimensional array comprising of space separated 1s and 0s
     //              in a regular matrix fashion
-    //              (if not, NumberFormatException is caught and the corrupted file path is reported with a message
-    //              specifying the required format)
+    //              (if not, NumberFormatException is caught if the parsed string is not of numeric type,
+    //              or IllegalArgumentException is caught if the resulting integer is not 1 or 0;
+    //              the corrupted file path is reported with a message specifying the required format as well as the
+    //              element that caused the exception)
     public void run(String... args) {
         // All files containing input data are ingested
         try {
@@ -75,9 +77,13 @@ public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
                 } catch (SecurityException e) {
                     System.err.println("SecurityException: File \"" + file + "\" cannot be accessed.");
                 } catch (NumberFormatException e) {
-                    System.err.println("NumberFormatException: The data in the \"" + file + "should contain a single " +
-                            "binary two-dimensional array comprising of space separated 1s and 0s in a regular matrix" +
-                            " fashion");
+                    System.err.println("NumberFormatException: The data in the \"" + file + "\" should contain a single" +
+                            " binary two-dimensional array comprising of space separated 1s and 0s in a regular matrix" +
+                            " fashion.\n" + e.getMessage());
+                } catch (IllegalArgumentException e) {
+                    System.err.println("IllegalArgumentException: The data in the \"" + file + "\" should contain a " +
+                            "single binary two-dimensional array comprising of space separated 1s and 0s in a regular" +
+                            " matrix fashion.\n" + e.getMessage());
                 }
             }
         } catch (NullPointerException e) {
