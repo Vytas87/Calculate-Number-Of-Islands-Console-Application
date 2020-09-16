@@ -101,8 +101,8 @@ public class CalculateNumberOfIslandsBean {
 class UnionOfIslands {
     // 'n' is the number of elements in the initial set (all elements of the input matrix)
     // 'parent' is an array where the i'th index of the array represents the i'th element of the initial set and the
-    //      i'th element of the array represents the index of the parent of the i'th element of the initial set (1 is
-    //      to account for 0-based indexing; all elements of the input matrix will be numbered in a row-major fashion)
+    //      i'th element of the array represents the index of the parent of the i'th element of the initial set (all
+    //      elements of the input matrix will be numbered in a row-major fashion)
     // 'rank' is an array where the i'th index of the array represents the i'th element of the initial set and the
     //      i'th element of the array represents the relative height of the tree from the i'th element of the initial
     //      set. The actual height might be smaller because the trees get flattened out by the application of the
