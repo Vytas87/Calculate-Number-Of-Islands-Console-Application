@@ -71,7 +71,7 @@ public class CalculateNumberOfIslandsBean {
 
     private void checkNeighbours(int row, int col, int[][] mat, UnionOfIslands setOfIslands) {
 
-        // The following numbers are used to refer to the indexes of the neighbour that is passed in
+        // The following numbers are used to refer to the indexes of the coordinate that is passed in
         int[] rowNr = {-1, -1, -1, 0, 1, 1, 1, 0};
         int[] colNr = {-1, 0, 1, 1, 1, 0, -1, -1};
 
