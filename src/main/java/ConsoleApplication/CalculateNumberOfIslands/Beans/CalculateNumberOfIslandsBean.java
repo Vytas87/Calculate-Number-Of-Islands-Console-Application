@@ -132,12 +132,11 @@ class UnionOfIslands {
         // if i is the parent itself, then i is the representative
         if (parent[i] == i) {
             return i;
-            // otherwise, recursively find the index of the representative and apply the path compression method along
-            // the way
+        // otherwise, recursively find the index of the representative and apply the path compression method
         } else {
             int result = findRoot(parent[i]);
-            parent[i] = result;     // the the subtree from i is linked directly to the root of the tree, thereby
-            // flattening the overall structure of the tree
+            parent[i] = result;     // the subtree from i is linked directly to the root of the tree, thereby
+                                    // flattening the overall structure of the tree
             return result;
         }
 
