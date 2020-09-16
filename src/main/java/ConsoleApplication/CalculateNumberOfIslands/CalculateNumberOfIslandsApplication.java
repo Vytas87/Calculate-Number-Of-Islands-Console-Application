@@ -42,10 +42,6 @@ public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
     // A component that creates an int[][] matrix from a file (formatted as described above)
     private CreateInputMatrixFromFileBean createMatrix;
 
-    @Autowired
-    // A component that solves the given problem - calculates the number of islands from a binary two-dimensional array
-    private CalculateNumberOfIslandsBean calculateNumberOfIslands;
-
     @Override
     // Pre:     Reference directory/files exist and can be accessed
     //              (if the directory does not exist, NullPointerException is caught and the corrupted directory path
@@ -70,7 +66,8 @@ public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
                     System.out.println();
                     String inputIntroMsg = "Input : mat[][] = ";
                     print(inputMatrix, inputIntroMsg);
-                    int nrOfIslands = calculateNumberOfIslands.calculateNrOfIslands(inputMatrix);
+                    CalculateNumberOfIslandsBean calculateNumberOfIslands = new CalculateNumberOfIslandsBean(inputMatrix);
+                    int nrOfIslands = calculateNumberOfIslands.calculateNumberOfIslands();
                     System.out.println("Output : " + nrOfIslands);
                 } catch (FileNotFoundException e) {
                     System.err.println("FileNotFoundException: File \"" + file + "\" was not found." );
