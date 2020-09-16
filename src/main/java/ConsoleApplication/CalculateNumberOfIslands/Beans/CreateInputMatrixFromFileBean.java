@@ -23,7 +23,8 @@ public class CreateInputMatrixFromFileBean {
     //          Reference file contains a single binary two-dimensional array comprising of space separated 1s and 0s
     //              in a regular matrix fashion
     //              (if not, NumberFormatException is thrown if the parsed string is not of numeric type,
-    //              or IllegalArgumentException is thrown if the resulting integer is not 1 or 0)
+    //              or IllegalArgumentException is thrown if the resulting integer is not 1 or 0, or if the input
+    //              matrix has rows of different lengths)
     public int[][] createInputMatrix(File file) throws FileNotFoundException {
         Scanner input = new Scanner(new File(file.getAbsolutePath()));
 
@@ -38,16 +39,29 @@ public class CreateInputMatrixFromFileBean {
 
     private int[][] readInputMatrix(Scanner input) {
         List<List<Integer>> inputMatrixAsList = new ArrayList<>();
+        int width = 0;              // 'width' and 'isFirstRow' variables are used to handle the case when input matrix
+        boolean isFirstRow = true;  // has rows of different lengths
         while (input.hasNextLine()) {
             String[] rowOfNumbers = input.nextLine().split(" ");
             List<Integer> rowList = new ArrayList<>();
-                for (String s : rowOfNumbers) {
-                    int element = Integer.parseInt(s);
-                    if (element != 0 && element != 1) {
-                        throw new IllegalArgumentException("For input element: " + s);
-                    }
-                    rowList.add(element);
+
+            for (String s : rowOfNumbers) {
+                int element = Integer.parseInt(s);
+                if (element != 0 && element != 1) {
+                    throw new IllegalArgumentException("For input element: " + s);
                 }
+                rowList.add(element);
+            }
+
+            if (isFirstRow) {
+                width = rowList.size();
+                isFirstRow = false;
+            } else {
+                if (rowList.size() != width) {
+                    throw new IllegalArgumentException("Input matrix has rows of different length.");
+                }
+            }
+
             inputMatrixAsList.add(rowList);
         }
         int[][] inputMatrix = toIntArray(inputMatrixAsList);

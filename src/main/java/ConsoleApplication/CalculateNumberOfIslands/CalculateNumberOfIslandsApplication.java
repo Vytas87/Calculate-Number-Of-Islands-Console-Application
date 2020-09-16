@@ -26,7 +26,7 @@ import java.io.FileNotFoundException;
 
 @SpringBootApplication
 public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
-    private String inputDirectory = System.getProperty("user.dir") + "/InputData";
+    private String inputDirectory = System.getProperty("user.dir") + "\\InputData";
 
     public static void main(String[] args) {
         SpringApplication.run(CalculateNumberOfIslandsApplication.class, args);
@@ -52,9 +52,10 @@ public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
     //          Reference file contains a single binary two-dimensional array comprising of space separated 1s and 0s
     //              in a regular matrix fashion
     //              (if not, NumberFormatException is caught if the parsed string is not of numeric type,
-    //              or IllegalArgumentException is caught if the resulting integer is not 1 or 0;
+    //              or IllegalArgumentException is caught if the resulting integer is not 1 or 0, or if the input
+    //              matrix has rows of different lengths;
     //              the corrupted file path is reported with a message specifying the required format as well as the
-    //              element that caused the exception)
+    //              cause of the exception)
     public void run(String... args) {
         // All files containing input data are ingested
         try {
