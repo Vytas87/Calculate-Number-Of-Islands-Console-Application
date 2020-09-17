@@ -43,16 +43,16 @@ public class CreateInputMatrixFromFileBeanTests {
     }
 
     @Test
-    void inputMatrixElementsAreNot0or1_ThrowsIllegalArgumentException() {
+    void inputMatrixElementsAreNot0or1Test_ThrowsIllegalArgumentException() {
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                createMatrix.createInputMatrix(new File(testDirectory + "/inputMatrixElementsAreNot0or1.txt"))
+                createMatrix.createInputMatrix(new File(testDirectory + "/inputMatrixElementsAreNot0or1Test.txt"))
         );
     }
 
     @Test
-    void inputMatrixElementsAreNot0or1_ExceptionMessage() throws FileNotFoundException {
+    void inputMatrixElementsAreNot0orTest1_ExceptionMessage() throws FileNotFoundException {
         try {
-            createMatrix.createInputMatrix(new File(testDirectory + "/inputMatrixElementsAreNot0or1.txt"));
+            createMatrix.createInputMatrix(new File(testDirectory + "/inputMatrixElementsAreNot0or1Test.txt"));
         } catch (IllegalArgumentException exception) {
             String actualMessage = exception.getMessage();
             String expectedMessage = "For input element: ";
