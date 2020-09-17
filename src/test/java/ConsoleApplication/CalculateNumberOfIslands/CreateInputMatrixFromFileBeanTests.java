@@ -17,6 +17,13 @@ public class CreateInputMatrixFromFileBeanTests {
     private CreateInputMatrixFromFileBean createMatrix;
 
     @Test
+    void fileDoesNotExistTest_ThrowsFileNotFoundException() {
+        Assertions.assertThrows(FileNotFoundException.class, () ->
+                createMatrix.createInputMatrix(new File(testDirectory + "/fileDoesNotExistTest.txt"))
+        );
+    }
+
+    @Test
     void emptyFileTest() throws FileNotFoundException {
         int[][] actual = createMatrix.createInputMatrix(new File(testDirectory + "/emptyFileTest.txt"));
         int[][] expected = new int[0][0];
