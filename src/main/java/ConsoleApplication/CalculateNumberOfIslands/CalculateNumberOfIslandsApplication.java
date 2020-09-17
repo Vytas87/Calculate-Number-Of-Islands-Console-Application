@@ -43,10 +43,11 @@ public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
     private CreateInputMatrixFromFileBean createMatrix;
 
     @Override
-    // Pre:     Reference directory/files exist and can be accessed
-    //              (if the directory does not exist, NullPointerException is caught and the corrupted directory path
-    //              is reported,
-    //              if a file does not exist, FileNotFoundException is caught and the corrupted file path is reported,
+    // Pre:     Reference string to "inputDirectory" is not null
+    //              (if null, NullPointerException is thrown and the cause of the exception is reported)
+    //          Reference directory/files exist and can be accessed
+    //              (if a directory/file does not exist, FileNotFoundException is caught and the corrupted file path is
+    //              reported,
     //              if the directory/file cannot be accessed, SecurityException is caught and denial of access to the
     //              corrupted directory/file path is reported)
     //          Reference file contains a single binary two-dimensional array comprising of space separated 1s and 0s
@@ -71,21 +72,25 @@ public class CalculateNumberOfIslandsApplication implements CommandLineRunner {
                     int nrOfIslands = calculateNumberOfIslands.calculateNumberOfIslands();
                     System.out.println("Output : " + nrOfIslands);
                 } catch (FileNotFoundException e) {
-                    System.err.println("FileNotFoundException: File \"" + file + "\" was not found." );
+                    System.err.println("FileNotFoundException: File \"" + file + "\" was not found.");
                 } catch (SecurityException e) {
                     System.err.println("SecurityException: File \"" + file + "\" cannot be accessed.");
                 } catch (NumberFormatException e) {
                     System.err.println("NumberFormatException: The data in the \"" + file + "\" should contain a single" +
                             " binary two-dimensional array comprising of space separated 1s and 0s in a regular matrix" +
-                            " fashion.\n" + e.getMessage());
+                            " fashion.");
+                    System.err.println(e.getMessage());
                 } catch (IllegalArgumentException e) {
                     System.err.println("IllegalArgumentException: The data in the \"" + file + "\" should contain a " +
                             "single binary two-dimensional array comprising of space separated 1s and 0s in a regular" +
-                            " matrix fashion.\n" + e.getMessage());
+                            " matrix fashion.");
+                    System.err.println(e.getMessage());
                 }
             }
         } catch (NullPointerException e) {
-            System.err.println("NullPointerException: Input file directory \""+ inputDirectory + "\" was not found.");
+            System.err.println("NullPointerException: The application was passed a 'null' reference for input.");
+        } catch (FileNotFoundException e) {
+            System.err.println("FileNotFoundException: " + e.getMessage());
         } catch (SecurityException e) {
             System.err.println("SecurityException: Input file directory \"" + inputDirectory + "\" cannot be accessed.");
         }
